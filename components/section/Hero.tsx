@@ -11,11 +11,11 @@ import HeroRightAnimation from "../animation/heroRightAnimation";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-[80vh] overflow-hidden mt-2 ">
+    <section className="relative h-122.5 overflow-hidden mt-2 border-2 border-white">
       {/* Background Image with Framer Motion */}
       <HeroBGAnimation />
       {/* Content */}
-      <div className="relative flex justify-center items-center gap-[10.5rem] mt-[7.5rem]">
+      <div className="relative flex justify-center items-center gap-42 mt-30">
         {/* Left */}
         <HeroLeftContent />
 

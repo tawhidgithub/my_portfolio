@@ -51,6 +51,7 @@ body {
   /* /// my color */
   --color-primaryBg: #323647;
   --color-primaryDarkBg: #242734;
+  --color-primaryLightBg: #424758;
   --color-secondaryBg: #ffbf5b;
   --color-textWhite: #e9eceb;
 }

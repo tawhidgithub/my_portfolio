@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion"; // ✅ Import motion
 import { Button } from "../ui/button";
 import { ArrowBigRight } from "lucide-react";
+import CustomButton from "../custom_component/CustomButton";
 
 const HeroRightAnimation = () => {
   return (
@@ -28,12 +29,7 @@ const HeroRightAnimation = () => {
         <div className="text-gray-300 text-lg drop-shadow-lg">
           Modern Mobile & Web Development Focused on Speed, Scale & UX
         </div>
-        <div className="flex justify-start">
-          <Button className="bg-transparent border-2 border-black text-secondaryBg flex items-center gap-2 hover:scale-110 transition cursor-pointer">
-            My Story
-            <ArrowBigRight size={32} />
-          </Button>
-        </div>
+        <CustomButton btnText="My Story" />
       </div>
     </motion.div>
   );
