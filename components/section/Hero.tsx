@@ -11,7 +11,7 @@ import HeroRightAnimation from "../animation/heroRightAnimation";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-122.5 overflow-hidden mt-2 border-2 border-white">
+    <section className="relative h-122.5 overflow-hidden mt-2 ">
       {/* Background Image with Framer Motion */}
       <HeroBGAnimation />
       {/* Content */}

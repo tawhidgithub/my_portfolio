@@ -1,14 +1,18 @@
+import googleIcon from "@/public/icon/google.svg";
+import ODLogo from "@/public/icon/OD.png";
+import BKLogo from "@/public/icon/BK.png";
+import { StaticImageData } from "next/image";
+
 export interface Client {
   id: number;
   name: string;
-  logo: string;
+  logo: string | StaticImageData;
 }
 
 export const clientData = [
-  { id: 1, name: "Google", logo: "/logos/google.png" },
-  { id: 2, name: "Apple", logo: "/logos/apple.png" },
-  { id: 3, name: "Microsoft", logo: "/logos/microsoft.png" },
-  { id: 4, name: "Amazon", logo: "/logos/amazon.png" },
-  { id: 5, name: "Facebook", logo: "/logos/facebook.png" },
-  { id: 6, name: "Tesla", logo: "/logos/tesla.png" },
+  { id: 1, name: "Zayans", logo: "" },
+  { id: 2, name: "Ordhek deen", logo: ODLogo },
+  { id: 3, name: "BracBank cholo", logo: BKLogo },
+  { id: 4, name: "TMS", logo: "" },
+  { id: 5, name: "VMS", logo: "" },
 ];

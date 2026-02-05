@@ -18,17 +18,25 @@ const ProductSection = () => {
       </div>
       {/* second box */}
       <div className="flex gap-20 justify-center mt-8">
-        <InfoBox title={"Product Design"} icon={<Box />} counter={10} />
+        <InfoBox
+          title={"Product Design"}
+          icon={<Box />}
+          counter={10}
+          derection="left"
+        />
         <InfoBox title={"App Development"} icon={<PenTool />} counter={4} />
         <InfoBox
           title={"Full stack  Developer"}
           icon={<MonitorCheck />}
           counter={4}
+          derection="right"
         />
       </div>
       {/* thred box */}
-      <div className="">
-        <ContactClientTicker />
+      <div className="flex w-full justify-center mt-20">
+        <div className="w-[60vw] h-20 flex items-center  overflow-hidden ">
+          <ContactClientTicker />
+        </div>
       </div>
     </div>
   );
