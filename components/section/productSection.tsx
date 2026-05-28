@@ -4,7 +4,8 @@ import ContactFirstLeftBoxAnimation from "../animation/contactFirstLeftBoxAnimat
 import ContactFirstRightBoxAnimation from "../animation/contactFirstRightBoxAnimation";
 import InfoBox from "../custom_component/infoBox";
 import { Box, MonitorCheck, PenTool } from "lucide-react";
-import ContactClientTicker from "../animation/contactClientTicker";
+import { clientData } from "@/data";
+import TickerAnimations from "../animation/contactClientTicker";
 
 const ProductSection = () => {
   return (
@@ -35,7 +36,7 @@ const ProductSection = () => {
       {/* thred box */}
       <div className="flex w-full justify-center mt-20">
         <div className="w-[60vw] h-20 flex items-center  overflow-hidden ">
-          <ContactClientTicker />
+          <TickerAnimations TickerData={clientData} />
         </div>
       </div>
     </div>

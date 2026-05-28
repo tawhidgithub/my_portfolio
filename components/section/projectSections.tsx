@@ -1,0 +1,161 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
+
+const projects = [
+  {
+    num: "01",
+    tag: "Mobile App",
+    title: "ShopEase",
+    description:
+      "Full e-commerce app with cart, real-time tracking, and Stripe payments.",
+    tech: ["Flutter", "Firebase", "Stripe"],
+    side: "left",
+  },
+  {
+    num: "02",
+    tag: "Web App",
+    title: "DevBoard",
+    description:
+      "Developer dashboard for managing tasks, sprints, and team metrics.",
+    tech: ["Next.js", "Tailwind", "Prisma"],
+    side: "right",
+  },
+  {
+    num: "03",
+    tag: "UI Library",
+    title: "FlutterKit",
+    description:
+      "30+ reusable Flutter widgets with dark/light themes and custom animations.",
+    tech: ["Flutter", "Dart", "Pub.dev"],
+    side: "left",
+  },
+];
+
+function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+  return (
+    <div className="group relative flex-none w-[260px] bg-primaryBg rounded-2xl border border-white/5 p-[22px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-secondaryBg/25">
+      {/* Top accent bar on hover */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-secondaryBg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Big background number */}
+      <span className="absolute top-2.5 right-4 font-bold text-[44px] leading-none text-secondaryBg opacity-[0.10] select-none pointer-events-none">
+        {project.num}
+      </span>
+
+      {/* Tag */}
+      <div className="flex items-center gap-1.5 mb-2">
+        <span className="w-[5px] h-[5px] rounded-full bg-secondaryBg flex-shrink-0" />
+        <span className="text-[10px] tracking-[3px] uppercase text-secondaryBg">
+          {project.tag}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-[20px] font-bold text-textWhite tracking-tight mb-2">
+        {project.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-[13px] text-textWhite/50 leading-relaxed mb-4">
+        {project.description}
+      </p>
+
+      {/* Tech pills */}
+      <div className="flex flex-wrap gap-1.5">
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            className="text-[11px] font-medium bg-primaryDarkBg text-textWhite/60 border border-white/[0.07] rounded-full px-2.5 py-1"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BranchRow({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isLeft = project.side === "left";
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`relative z-10 flex items-center w-full max-w-[640px] mx-auto mb-9 ${
+        isLeft ? "flex-row" : "flex-row-reverse"
+      }`}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.16,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <ProjectCard project={project} />
+
+      {/* Connector line with dot */}
+      <div className="relative flex-1 h-px bg-secondaryBg/35">
+        <span
+          className={`absolute top-1/2 -translate-y-1/2 w-[7px] h-[7px] rounded-full bg-secondaryBg/50 ${
+            isLeft ? "right-0" : "left-0"
+          }`}
+        />
+      </div>
+
+      {/* Center node */}
+      <div className="flex-none flex items-center justify-center w-7 h-7 z-10">
+        <div className="w-7 h-7 rounded-full border border-secondaryBg/35 flex items-center justify-center">
+          <div className="w-3 h-3 rounded-full bg-secondaryBg" />
+        </div>
+      </div>
+
+      {/* Empty side */}
+      <div className="flex-1" />
+    </motion.div>
+  );
+}
+
+export default function ProjectsSection() {
+  return (
+    <section className="relative py-20 px-6 bg-primaryDarkBg overflow-hidden">
+      {/* Soft ambient orbs */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-secondaryBg/[0.06] blur-[60px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-secondaryBg/[0.04] blur-[50px] pointer-events-none" />
+
+      {/* Heading */}
+      <div className="text-center mb-14">
+        <div className="flex items-center justify-center gap-2.5 mb-2.5">
+          <span className="w-8 h-px bg-secondaryBg opacity-60" />
+          <span className="text-[11px] tracking-[4px] uppercase text-secondaryBg">
+            My Work
+          </span>
+          <span className="w-8 h-px bg-secondaryBg opacity-60" />
+        </div>
+        <h2 className="text-[36px] font-extrabold text-textWhite tracking-tight">
+          Featured <span className="text-secondaryBg">Projects</span>
+        </h2>
+      </div>
+
+      {/* Tree */}
+      <div className="relative">
+        {/* Vertical trunk */}
+        <div className="absolute left-1/2 top-5 bottom-5 w-px -translate-x-1/2 bg-secondaryBg opacity-20" />
+
+        {projects.map((project, index) => (
+          <BranchRow key={project.title} project={project} index={index} />
+        ))}
+      </div>
+    </section>
+  );
+}

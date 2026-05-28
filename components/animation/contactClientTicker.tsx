@@ -1,13 +1,17 @@
 "use client";
 import { motion } from "framer-motion";
-import { clientData, Client } from "@/data";
+import { clientData, TickerType } from "@/data";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const ContactClientTicker = () => {
+interface TickerProps {
+  TickerData: TickerType[];
+}
+
+const TickerAnimations = ({ TickerData }: TickerProps) => {
   const [width, setWidth] = useState(0);
 
-  const duplicatedClientData = [...clientData, ...clientData];
+  const duplicatedData = [...TickerData, ...TickerData];
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +34,7 @@ const ContactClientTicker = () => {
         viewport={{ once: true }}
         className="flex gap-6 w-max"
       >
-        {duplicatedClientData.map((data: Client, index) => (
+        {duplicatedData.map((data: TickerType, index) => (
           <div
             key={index}
             className="group flex items-center gap-2 px-4 py-2 bg-primaryDarkBg rounded-md shadow-lg/60 hover:scale-105 hover:bg-secondaryBg transition-transform duration-700 "
@@ -48,4 +52,4 @@ const ContactClientTicker = () => {
   );
 };
 
-export default ContactClientTicker;
+export default TickerAnimations;
