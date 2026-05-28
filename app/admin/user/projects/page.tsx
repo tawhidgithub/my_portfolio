@@ -1,7 +1,6 @@
 "use client";
 
-import AdminTable from "../component/adminTable";
-
+import AdminTable from "../../component/adminTable";
 
 const projects = [
   {

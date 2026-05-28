@@ -13,6 +13,7 @@ import {
   SiRedux,
   SiAppwrite,
 } from "react-icons/si";
+
 import TickerAnimations from "../animation/contactClientTicker";
 import { SkillsData } from "@/data";
 
