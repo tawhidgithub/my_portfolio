@@ -18,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="w-full h-auto! min-h-20 flex items-center z-50 justify-end gap-5 py-4 px-5 bg-transparent ">
+    <div className="w-full h-auto! min-h-20 flex items-center z-50 justify-end gap-3 sm:gap-5 flex-wrap py-4 px-5 bg-transparent ">
       {["/", "/about", "/contact", "/youtube"].map((href, index) => {
         const name =
           href === "/"

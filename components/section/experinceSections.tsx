@@ -32,7 +32,7 @@ const experiences = [
 
 export default function ExperienceTimeline() {
   return (
-    <section className="relative py-28  max-w-[80%] mx-auto">
+    <section className="relative py-28 w-[90%] md:max-w-[80%] mx-auto">
       {/* background glow */}
       <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
       <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-orange-400/10 blur-3xl" />

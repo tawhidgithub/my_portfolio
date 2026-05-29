@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ContactSection3D() {
   return (
-    <section className="relative py-28 overflow-hidden">
+    <section className="relative py-28 overflow-hidden px-4 md:px-0">
       {/* background glow */}
       <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
       <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />

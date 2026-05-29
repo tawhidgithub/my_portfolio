@@ -25,12 +25,15 @@ const TickerAnimations = ({ TickerData }: TickerProps) => {
     <div className=" w-full">
       <motion.div
         ref={containerRef}
+        // Animate infinitely from x: 0 to x: -width
         animate={{ x: [0, -width] }}
+        // Animation config: continuous linear loop
         transition={{
           repeat: Infinity,
           duration: 20,
           ease: "linear",
         }}
+        // Viewport config: start when visible
         viewport={{ once: true }}
         className="flex gap-6 w-max"
       >

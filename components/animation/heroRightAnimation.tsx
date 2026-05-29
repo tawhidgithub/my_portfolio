@@ -9,20 +9,14 @@ import CustomButton from "../custom_component/CustomButton";
 const HeroRightAnimation = () => {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        x: 100,
-      }}
-      animate={{
-        opacity: 1,
-        x: 0,
-      }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-      }}
+      // Initial state: hidden and slightly shifted right
+      initial={{ opacity: 0, x: 50 }}
+      // Final state: fully visible and in original position
+      animate={{ opacity: 1, x: 0 }}
+      // Animation config: smooth ease-out over 0.8 seconds
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="flex flex-col gap-4 max-w-lg pl-[12.5rem] mt-5">
+      <div className="flex flex-col gap-4 max-w-lg pl-0 lg:pl-[12.5rem] mt-5">
         <div className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
           Software Engineer — Bangladesh
         </div>

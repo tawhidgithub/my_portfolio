@@ -33,7 +33,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-28 overflow-hidden max-w-[80%] mx-auto">
+    <section className="relative py-28 overflow-hidden w-[90%] md:max-w-[80%] mx-auto">
       {/* background glow */}
       <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
       <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />

@@ -28,7 +28,7 @@ const InfoBox = ({
                 : [0, 0],
           opacity: [0, 1],
         }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.9 }}
         transition={{ duration: 1 }}
         className=" h-55 w-55 bg-primaryLightBg shadow-xl rounded-sm flex  items-end justify-center hover:scale-105 hover:bg-secondaryBg transition cursor-pointer gap-2"
       >

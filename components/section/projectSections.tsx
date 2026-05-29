@@ -35,7 +35,7 @@ const projects = [
 
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
-    <div className="group relative flex-none w-[260px] bg-primaryBg rounded-2xl border border-white/5 p-[22px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-secondaryBg/25">
+    <div className="group relative flex-none w-full md:w-[260px] bg-primaryBg rounded-2xl border border-white/5 p-[22px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-secondaryBg/25">
       {/* Top accent bar on hover */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-secondaryBg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -91,8 +91,8 @@ function BranchRow({
   return (
     <motion.div
       ref={ref}
-      className={`relative z-10 flex items-center w-full max-w-[640px] mx-auto mb-9 ${
-        isLeft ? "flex-row" : "flex-row-reverse"
+      className={`relative z-10 flex flex-col md:flex-row items-center w-full max-w-[640px] mx-auto mb-9 gap-4 md:gap-0 ${
+        isLeft ? "md:flex-row" : "md:flex-row-reverse"
       }`}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -105,7 +105,7 @@ function BranchRow({
       <ProjectCard project={project} />
 
       {/* Connector line with dot */}
-      <div className="relative flex-1 h-px bg-secondaryBg/35">
+      <div className="hidden md:block relative flex-1 h-px bg-secondaryBg/35">
         <span
           className={`absolute top-1/2 -translate-y-1/2 w-[7px] h-[7px] rounded-full bg-secondaryBg/50 ${
             isLeft ? "right-0" : "left-0"
@@ -114,14 +114,14 @@ function BranchRow({
       </div>
 
       {/* Center node */}
-      <div className="flex-none flex items-center justify-center w-7 h-7 z-10">
+      <div className="hidden md:flex flex-none items-center justify-center w-7 h-7 z-10">
         <div className="w-7 h-7 rounded-full border border-secondaryBg/35 flex items-center justify-center">
           <div className="w-3 h-3 rounded-full bg-secondaryBg" />
         </div>
       </div>
 
       {/* Empty side */}
-      <div className="flex-1" />
+      <div className="hidden md:block flex-1" />
     </motion.div>
   );
 }
@@ -150,7 +150,7 @@ export default function ProjectsSection() {
       {/* Tree */}
       <div className="relative">
         {/* Vertical trunk */}
-        <div className="absolute left-1/2 top-5 bottom-5 w-px -translate-x-1/2 bg-secondaryBg opacity-20" />
+        <div className="hidden md:block absolute left-1/2 top-5 bottom-5 w-px -translate-x-1/2 bg-secondaryBg opacity-20" />
 
         {projects.map((project, index) => (
           <BranchRow key={project.title} project={project} index={index} />

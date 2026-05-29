@@ -18,7 +18,7 @@ export default function FooterSections() {
       <div className="absolute top-0 left-10 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
       <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
 
-      <div className="max-w-[80%] mx-auto">
+      <div className="w-[90%] md:max-w-[80%] mx-auto">
         <div className="flex flex-col gap-14">
           {/* top grid */}
           <div className="grid gap-10 md:grid-cols-3">

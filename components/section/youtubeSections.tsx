@@ -32,7 +32,7 @@ const videos = [
 
 export default function YoutubeSection() {
   return (
-    <section className="relative overflow-hidden py-28 max-w-[80%] mx-auto">
+    <section className="relative overflow-hidden py-28 w-[90%] md:max-w-[80%] mx-auto">
       {/* background blur */}
       <div className="absolute top-20 left-0 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
 

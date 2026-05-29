@@ -7,25 +7,19 @@ import { faFaceGrin } from "@fortawesome/free-regular-svg-icons";
 const HeroLeftContent = () => {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        x: -100,
-      }}
-      animate={{
-        opacity: 1,
-        x: 0,
-      }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-      }}
+      // Initial state: hidden and slightly shifted left
+      initial={{ opacity: 0, x: -50 }}
+      // Final state: fully visible and in original position
+      animate={{ opacity: 1, x: 0 }}
+      // Animation config: smooth ease-out over 0.8 seconds
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="flex flex-col">
         <FontAwesomeIcon
           icon={faFaceGrin}
           className="text-secondaryBg size-8"
         />
-        <div className="text-6xl md:text-8xl font-bold text-white drop-shadow-lg tracking-wide">
+        <div className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white drop-shadow-lg tracking-wide">
           Tawhid <br />
           <span className="ml-4">Islam.</span>
         </div>
