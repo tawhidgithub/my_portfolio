@@ -7,7 +7,10 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  RedirectLogic();
-
-  return <div>{children}</div>;
+  return (
+    <div>
+      <RedirectLogic />
+      {children}
+    </div>
+  );
 }

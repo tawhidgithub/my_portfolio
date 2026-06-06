@@ -2,6 +2,8 @@
 
 import { motion } from "motion/react";
 import { Edit, Trash } from "lucide-react";
+import { useState } from "react";
+import AddDialog from "./addDialog";
 
 type Column = {
   key: string;
@@ -14,6 +16,7 @@ type Props = {
   data: any[];
   onEdit: (item: any) => void;
   onDelete: (id: string) => void;
+  onAdd?: (item: any) => void;
 };
 
 export default function AdminTable({
@@ -22,10 +25,25 @@ export default function AdminTable({
   data,
   onEdit,
   onDelete,
+  onAdd,
 }: Props) {
+  const [showAdd, setShowAdd] = useState(false);
+  const handleAdd = (item: any) => {
+    onAdd?.(item);
+  };
   return (
     <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-      <h2 className="text-xl font-semibold mb-6">{title}</h2>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        {onAdd && (
+          <button
+            onClick={() => setShowAdd(true)}
+            className="rounded-md bg-[var(--color-secondaryBg)] px-3 py-1 text-black"
+          >
+            + Add New
+          </button>
+        )}
+      </div>
 
       <div className="overflow-x-auto">
         <table className="w-full text-left">
@@ -74,6 +92,14 @@ export default function AdminTable({
           </tbody>
         </table>
       </div>
+      {showAdd && onAdd && (
+        <AddDialog
+          title={`Add ${title}`}
+          columns={columns}
+          onAdd={handleAdd}
+          onClose={() => setShowAdd(false)}
+        />
+      )}
     </div>
   );
 }

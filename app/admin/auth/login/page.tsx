@@ -58,6 +58,10 @@ export default function AdminLoginPage() {
 
           {/* button */}
           <motion.button
+            onClick={() => {
+              localStorage.setItem("isLoginAsAdmin", "true");
+              window.location.href = "/admin/user";
+            }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             type="submit"

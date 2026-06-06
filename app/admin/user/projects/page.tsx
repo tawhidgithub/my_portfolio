@@ -1,23 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import AdminTable from "../../component/adminTable";
-
-const projects = [
-  {
-    id: "1",
-    title: "E-commerce App",
-    stack: "Next.js, Node.js",
-    status: "Live",
-  },
-  {
-    id: "2",
-    title: "Portfolio Website",
-    stack: "Next.js, Tailwind",
-    status: "In Progress",
-  },
-];
+import { projects as initialProjects } from "../sampleData";
 
 export default function ProjectsAdmin() {
+  const [projects, setProjects] = useState(initialProjects);
+
   return (
     <AdminTable
       title="Manage Projects"
@@ -27,8 +16,9 @@ export default function ProjectsAdmin() {
         { key: "status", label: "Status" },
       ]}
       data={projects}
+      onAdd={(item) => setProjects((s) => [item, ...s])}
       onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => console.log("Delete", id)}
+      onDelete={(id) => setProjects((s) => s.filter((p) => p.id !== id))}
     />
   );
 }

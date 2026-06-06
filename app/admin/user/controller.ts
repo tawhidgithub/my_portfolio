@@ -11,6 +11,8 @@ export const RedirectLogic = () => {
       router.push("/admin/auth/login");
     } else if (pathname === "/admin/auth/login" && isLoginAsAdmin === "true") {
       router.push("/admin/user");
+    } else if (pathname === "/admin" && isLoginAsAdmin === "true") {
+      router.push("/admin/user");
     }
   }, [pathname, router]);
   return null;
