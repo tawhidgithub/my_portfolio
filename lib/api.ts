@@ -1,145 +1,87 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+class ApiService {
+  private api: AxiosInstance;
 
-export type ApiError = {
-  message: string;
-  status: number;
-  data?: unknown;
-};
+  constructor() {
+    this.api = axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
+      timeout: 30000,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-export type ApiResult<T> =
-  | { ok: true; data: T }
-  | { ok: false; error: ApiError };
-
-// ─── Error guard ─────────────────────────────────────────────────────────────
-
-function isApiError(err: unknown): err is ApiError {
-  return (
-    typeof err === "object" &&
-    err !== null &&
-    "message" in err &&
-    "status" in err
-  );
-}
-
-function toApiError(err: unknown): ApiError {
-  if (isApiError(err)) return err;
-  if (err instanceof Error) {
-    return { message: err.message, status: 500 };
+    this.initializeInterceptors();
   }
-  return { message: "Unknown error", status: 500 };
-}
 
-// ─── Client factory ──────────────────────────────────────────────────────────
+  private initializeInterceptors() {
+    this.api.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem("token");
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
-
-const createApiClient = (): AxiosInstance => {
-  const client = axios.create({
-    baseURL: BASE_URL,
-    headers: { "Content-Type": "application/json" },
-    timeout: 10_000,
-  });
-
-  client.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
-      try {
-        if (typeof window !== "undefined") {
-          const token = localStorage.getItem("token");
-          if (token) {
-            config.headers.set("Authorization", `Bearer ${token}`);
-          }
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
         }
-      } catch {
-        // swallow storage errors
-      }
-      return config;
-    },
-    (error: unknown) => Promise.reject(error),
-  );
 
-  client.interceptors.response.use(
-    (res: AxiosResponse) => res,
-    (error: unknown) => {
-      const axiosError = axios.isAxiosError(error) ? error : null;
-      const normalized: ApiError = {
-        message:
-          axiosError?.response?.data?.message ??
-          (error instanceof Error ? error.message : "Unknown error"),
-        status: axiosError?.response?.status ?? 500,
-        data: axiosError?.response?.data,
-      };
-      return Promise.reject(normalized);
-    },
-  );
+        return config;
+      },
+      (error) => Promise.reject(error),
+    );
 
-  return client;
-};
+    this.api.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          console.error("Unauthorized");
+          // logout logic
+        }
 
-const apiClient = createApiClient();
+        return Promise.reject(
+          error.response?.data || {
+            message: "Something went wrong",
+          },
+        );
+      },
+    );
+  }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+  async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.get(url, config);
+    return response.data;
+  }
 
-function toOk<T>(res: AxiosResponse<T>): ApiResult<T> {
-  return { ok: true, data: res.data };
-}
+  async post<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.post(url, data, config);
+    return response.data;
+  }
 
-function toFail(err: unknown): ApiResult<never> {
-  return { ok: false, error: toApiError(err) };
-}
+  async put<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.put(url, data, config);
+    return response.data;
+  }
 
-// ─── Methods ─────────────────────────────────────────────────────────────────
+  async patch<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.patch(url, data, config);
+    return response.data;
+  }
 
-export async function apiGet<T = unknown>(
-  url: string,
-  config?: AxiosRequestConfig,
-): Promise<ApiResult<T>> {
-  try {
-    return toOk(await apiClient.get<T>(url, config));
-  } catch (err) {
-    return toFail(err);
+  async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.delete(url, config);
+    return response.data;
   }
 }
 
-export async function apiPost<T = unknown, B = unknown>(
-  url: string,
-  body?: B,
-  config?: AxiosRequestConfig,
-): Promise<ApiResult<T>> {
-  try {
-    return toOk(await apiClient.post<T>(url, body, config));
-  } catch (err) {
-    return toFail(err);
-  }
-}
-
-export async function apiPut<T = unknown, B = unknown>(
-  url: string,
-  body?: B,
-  config?: AxiosRequestConfig,
-): Promise<ApiResult<T>> {
-  try {
-    return toOk(await apiClient.put<T>(url, body, config));
-  } catch (err) {
-    return toFail(err);
-  }
-}
-
-export async function apiDelete<T = unknown>(
-  url: string,
-  config?: AxiosRequestConfig,
-): Promise<ApiResult<T>> {
-  try {
-    return toOk(await apiClient.delete<T>(url, config));
-  } catch (err) {
-    return toFail(err);
-  }
-}
-
-export default apiClient;
+export default new ApiService();

@@ -6,5 +6,6 @@ export const ENDPOINTS = {
   youtube: `${API_PREFIX}/youtube`,
   experiences: `${API_PREFIX}/experiences`,
   feedback: `${API_PREFIX}/feedback`,
-  auth: `${API_PREFIX}/auth`,
+  images: `${API_PREFIX}/images`,
+  login: `${API_PREFIX}/auth/login`,
 } as const;

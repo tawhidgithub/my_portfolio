@@ -3,9 +3,11 @@
 import { useState } from "react";
 import AdminTable from "../../component/adminTable";
 import { projects as initialProjects } from "../sampleData";
+import { useGetProjects } from "../../hooks/useProjects";
 
 export default function ProjectsAdmin() {
-  const [projects, setProjects] = useState(initialProjects);
+  const { data: fetchedProjects } = useGetProjects();
+  const [projects, setProjects] = useState(fetchedProjects || []);
 
   return (
     <AdminTable
@@ -18,7 +20,7 @@ export default function ProjectsAdmin() {
       data={projects}
       onAdd={(item) => setProjects((s) => [item, ...s])}
       onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setProjects((s) => s.filter((p) => p.id !== id))}
+      onDelete={(id) => setProjects((s) => s.filter((p) => p._id !== id))}
     />
   );
 }
