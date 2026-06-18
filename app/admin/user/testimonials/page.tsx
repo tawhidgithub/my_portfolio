@@ -1,23 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { TestimonialColumn } from "@/lib/tableColumn";
 import AdminTable from "../../component/adminTable";
-import { testimonials as initialTestimonials } from "../sampleData";
+import {
+  useGetTestimonials,
+  useMutateTestimonial,
+} from "../../hooks/useTestimonials";
 
 export default function TestimonialsAdmin() {
-  const [testimonials, setTestimonials] = useState(initialTestimonials);
+  const { data } = useGetTestimonials();
+  const { create, update, remove } = useMutateTestimonial();
 
   return (
     <AdminTable
       title="Manage Testimonials"
-      columns={[
-        { key: "name", label: "Name" },
-        { key: "text", label: "Text" },
-      ]}
-      data={testimonials}
-      onAdd={(item) => setTestimonials((s) => [item, ...s])}
-      onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setTestimonials((s) => s.filter((x) => x.id !== id))}
+      columns={TestimonialColumn}
+      data={data ?? []}
+      onAdd={(item) => create.mutate(item)}
+      onEdit={(item) => update.mutate(item)}
+      onDelete={(id) => remove.mutate(id)}
     />
   );
 }

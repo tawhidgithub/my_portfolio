@@ -1,23 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { SkillsColumn } from "@/lib/tableColumn";
 import AdminTable from "../../component/adminTable";
-import { skills as initialSkills } from "../sampleData";
+import { useGetSkills, useMutateSkill } from "../../hooks/useSkills";
 
 export default function SkillsAdmin() {
-  const [skills, setSkills] = useState(initialSkills);
+  const { data } = useGetSkills();
+  const { create, update, remove } = useMutateSkill();
 
   return (
     <AdminTable
       title="Manage Skills"
-      columns={[
-        { key: "name", label: "Skill" },
-        { key: "level", label: "Level" },
-      ]}
-      data={skills}
-      onAdd={(item) => setSkills((s) => [item, ...s])}
-      onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setSkills((s) => s.filter((x) => x.id !== id))}
+      columns={SkillsColumn}
+      data={data ?? []}
+      onAdd={(item) => create.mutate(item)}
+      onEdit={(item) => update.mutate(item)}
+      onDelete={(id) => remove.mutate(id)}
     />
   );
 }

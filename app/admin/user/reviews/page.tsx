@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import AdminTable from "../../component/adminTable";
-import { reviews as initialReviews } from "../sampleData";
+import { useGetReviews, useMutateReview } from "../../hooks/useReviews";
 
 export default function ReviewsAdmin() {
-  const [reviews, setReviews] = useState(initialReviews);
+  const { data } = useGetReviews();
+  const { create, update, remove } = useMutateReview();
 
   return (
     <AdminTable
@@ -14,10 +14,10 @@ export default function ReviewsAdmin() {
         { key: "author", label: "Author" },
         { key: "text", label: "Review" },
       ]}
-      data={reviews}
-      onAdd={(item) => setReviews((s) => [item, ...s])}
-      onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setReviews((s) => s.filter((x) => x.id !== id))}
+      data={data ?? []}
+      onAdd={(item) => create.mutate(item)}
+      onEdit={(item) => update.mutate(item)}
+      onDelete={(id) => remove.mutate(id)}
     />
   );
 }

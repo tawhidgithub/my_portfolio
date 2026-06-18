@@ -1,24 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { ExpColumn } from "@/lib/tableColumn";
 import AdminTable from "../../component/adminTable";
-import { experience as initialExperience } from "../sampleData";
+import {
+  useGetExperiences,
+  useMutateExperience,
+} from "../../hooks/useExperiences";
 
 export default function ExperienceAdmin() {
-  const [experience, setExperience] = useState(initialExperience);
+  const { data } = useGetExperiences();
+  const { create, update, remove } = useMutateExperience();
 
   return (
     <AdminTable
       title="Manage Experience"
-      columns={[
-        { key: "role", label: "Role" },
-        { key: "company", label: "Company" },
-        { key: "years", label: "Years" },
-      ]}
-      data={experience}
-      onAdd={(item) => setExperience((s) => [item, ...s])}
-      onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setExperience((s) => s.filter((x) => x.id !== id))}
+      columns={ExpColumn}
+      data={data ?? []}
+      onAdd={(item) => create.mutate(item)}
+      onEdit={(item) => update.mutate(item)}
+      onDelete={(id) => remove.mutate(id)}
     />
   );
 }

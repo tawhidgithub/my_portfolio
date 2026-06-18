@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import AdminTable from "../../component/adminTable";
-import { images as initialImages } from "../sampleData";
+import { useGetImages, useMutateImage } from "../../hooks/useImages";
 
 export default function ImagesAdmin() {
-  const [images, setImages] = useState(initialImages);
+  const { data } = useGetImages();
+  const { upload, remove } = useMutateImage();
 
   return (
     <AdminTable
@@ -14,10 +14,10 @@ export default function ImagesAdmin() {
         { key: "title", label: "Title" },
         { key: "url", label: "URL" },
       ]}
-      data={images}
-      onAdd={(item) => setImages((s) => [item, ...s])}
-      onEdit={(item) => console.log("Edit", item)}
-      onDelete={(id) => setImages((s) => s.filter((x) => x.id !== id))}
+      data={data ?? []}
+      onAdd={(item) => upload.mutate(item as any)}
+      onEdit={(item) => upload.mutate(item as any)}
+      onDelete={(id) => remove.mutate(id)}
     />
   );
 }
