@@ -1,12 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { projectService } from "../services/projectServices";
 import { ProjectType } from "@/app/type/projectType";
+import { MapProjectTableData } from "@/lib/formateData/mapProjectTableData";
+import { ApiResponseType } from "@/app/type/responseType";
 
 export const useGetProjects = () => {
-  return useQuery<ProjectType[], Error>({
+  const { data, isLoading, error } = useQuery<ProjectType[], Error>({
     queryKey: ["projects"],
     queryFn: () => projectService.getAll(),
   });
+
+  const filterData = data ? MapProjectTableData(data) : [];
+
+  return { filterData, isLoading, error };
 };
 
 export const useMutateProject = () => {
@@ -20,9 +26,13 @@ export const useMutateProject = () => {
   const update = useMutation<
     ProjectType,
     unknown,
-    { id: string; payload: Partial<ProjectType> }
+    { id: string; payload: ProjectType }
   >({
-    mutationFn: ({ id, payload }) => projectService.update(id, payload),
+    mutationFn: ({ id, payload }) => {
+      console.log("----------payload--payload---", payload);
+
+      return projectService.update(id, payload);
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["projects"] }),
   });
 

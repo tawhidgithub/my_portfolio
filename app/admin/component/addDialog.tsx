@@ -7,7 +7,9 @@ type Column = { key: string; label: string };
 type Props = {
   title?: string;
   columns: Column[];
-  onAdd: (item: any) => void;
+  onAdd?: (item: any) => void;
+  onSave?: (item: any) => void;
+  initialData?: Record<string, any>;
   onClose: () => void;
 };
 
@@ -15,9 +17,11 @@ export default function AddDialog({
   title = "Add Item",
   columns,
   onAdd,
+  onSave,
+  initialData,
   onClose,
 }: Props) {
-  const [form, setForm] = useState<Record<string, any>>({});
+  const [form, setForm] = useState<Record<string, any>>(initialData || {});
 
   const handleChange = (key: string, value: any) => {
     setForm((s) => ({ ...s, [key]: value }));
@@ -25,8 +29,15 @@ export default function AddDialog({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const id = String(Date.now());
-    onAdd({ id, ...form });
+    const id = initialData?.id ?? String(Date.now());
+    const payload = { id, ...form };
+
+    if (initialData) {
+      onSave?.(payload);
+    } else {
+      onAdd?.(payload);
+    }
+
     onClose();
   };
 
@@ -63,7 +74,7 @@ export default function AddDialog({
             type="submit"
             className="px-4 py-2 bg-[var(--color-secondaryBg)] rounded-md"
           >
-            Add
+            {initialData ? "Save" : "Add"}
           </button>
         </div>
       </form>

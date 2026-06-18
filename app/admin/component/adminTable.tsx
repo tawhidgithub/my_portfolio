@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Edit, Trash } from "lucide-react";
 import { useState } from "react";
 import AddDialog from "./addDialog";
+import { CustomTableDataType } from "@/app/type/tableType";
 
 type Column = {
   key: string;
@@ -13,7 +14,7 @@ type Column = {
 type Props = {
   title: string;
   columns: Column[];
-  data: any[];
+  data: CustomTableDataType[];
   onEdit: (item: any) => void;
   onDelete: (id: string) => void;
   onAdd?: (item: any) => void;
@@ -28,9 +29,13 @@ export default function AdminTable({
   onAdd,
 }: Props) {
   const [showAdd, setShowAdd] = useState(false);
+  const [editItem, setEditItem] = useState<any | null>(null);
   const handleAdd = (item: any) => {
     onAdd?.(item);
   };
+
+  console.log("data---------------", data);
+
   return (
     <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
       <div className="flex items-center justify-between mb-6">
@@ -74,14 +79,17 @@ export default function AdminTable({
 
                 <td className="flex gap-3 py-4">
                   <button
-                    onClick={() => onEdit(item)}
+                    onClick={() => {
+                      setEditItem(item);
+                      setShowAdd(true);
+                    }}
                     className="text-yellow-400 hover:scale-110 transition"
                   >
                     <Edit size={18} />
                   </button>
 
                   <button
-                    onClick={() => onDelete(item.id)}
+                    onClick={() => onDelete(item.id!)}
                     className="text-red-400 hover:scale-110 transition"
                   >
                     <Trash size={18} />
@@ -92,12 +100,24 @@ export default function AdminTable({
           </tbody>
         </table>
       </div>
-      {showAdd && onAdd && (
+      {showAdd && (onAdd || onEdit) && (
         <AddDialog
-          title={`Add ${title}`}
+          title={editItem ? `Edit ${title}` : `Add ${title}`}
           columns={columns}
+          initialData={editItem ?? undefined}
           onAdd={handleAdd}
-          onClose={() => setShowAdd(false)}
+          onSave={(item) => {
+            if (editItem) {
+              onEdit(item);
+              console.log("++++============", item);
+            } else {
+              handleAdd(item);
+            }
+          }}
+          onClose={() => {
+            setShowAdd(false);
+            setEditItem(null);
+          }}
         />
       )}
     </div>

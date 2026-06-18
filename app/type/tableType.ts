@@ -1,4 +1,8 @@
-type CustomTableType = {
-  key: string;
-  label: string;
-};
+export type CustomTableDataType = Partial<{
+  id: string;
+  title: string;
+  description: string;
+  techStack: string;
+  githubUrl: string;
+  liveUrl: string;
+}>;
