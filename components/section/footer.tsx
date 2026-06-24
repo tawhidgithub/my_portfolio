@@ -73,8 +73,8 @@ export default function FooterSections() {
               <h3 className="text-lg font-semibold mb-4">Let’s Talk</h3>
 
               <div className="space-y-3 text-white/60">
-                <p>📍 Mymensingh, Bangladesh</p>
-                <p>📧 tawhidul.dev@email.com</p>
+                <p>📍 Dhaka, Bangladesh</p>
+                <p>📧 titawhid02@gmail.com</p>
                 <p>💼 Available for freelance & remote work</p>
               </div>
 

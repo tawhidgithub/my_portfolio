@@ -6,30 +6,39 @@ import { motion, useInView } from "motion/react";
 const projects = [
   {
     num: "01",
-    tag: "Mobile App",
-    title: "ShopEase",
+    tag: "app",
+    title: "Ordhekdeen",
     description:
-      "Full e-commerce app with cart, real-time tracking, and Stripe payments.",
-    tech: ["Flutter", "Firebase", "Stripe"],
+      "A secure, Shariah-compliant Islamic matrimony application designed to help practicing Muslims in Bangladesh find compatible life partners based on shared faith and values.",
+    tech: ["Flutter", "Firebase", "Getx"],
     side: "left",
   },
   {
     num: "02",
-    tag: "Web App",
-    title: "DevBoard",
+    tag: "web",
+    title: "Weebard",
     description:
-      "Developer dashboard for managing tasks, sprints, and team metrics.",
-    tech: ["Next.js", "Tailwind", "Prisma"],
+      "A multifunctional SaaS platform designed to streamline professional workflows by integrating ATS-friendly resume management, real-time team collaboration, and automated productivity tools.",
+    tech: ["Next.js", "Tailwind", "React query"],
     side: "right",
   },
   {
     num: "03",
-    tag: "UI Library",
-    title: "FlutterKit",
+    tag: "app",
+    title: "Brac Bank Cholo",
     description:
-      "30+ reusable Flutter widgets with dark/light themes and custom animations.",
-    tech: ["Flutter", "Dart", "Pub.dev"],
+      "An official corporate transport management application designed to streamline daily employee commuting through real-time vehicle tracking, automated booking workflows, and trip history management",
+    tech: ["Flutter", "Dart"],
     side: "left",
+  },
+  {
+    num: "04",
+    tag: "web",
+    title: "Veterinary Information System - NCAH",
+    description:
+      "Engineered a modular, highly secure React frontend for Bhutan’s National Veterinary Information System (VIS), centralizing livestock registration, mass vaccination campaigns, and clinical record management for government extension centers nationwide.",
+    tech: ["React", "Axios", "Clean Architecture"],
+    side: "right",
   },
 ];
 

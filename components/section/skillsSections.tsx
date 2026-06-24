@@ -12,7 +12,18 @@ import {
   SiTailwindcss,
   SiRedux,
   SiAppwrite,
+  SiDocker,
+  SiClickup,
+  SiGetx,
+  SiClaude,
+  SiApachehive,
+  SiOllama,
+  SiGithubcopilot,
+  SiSqlite,
 } from "react-icons/si";
+import { PiGitlabLogoSimpleBold } from "react-icons/pi";
+import { TbBrandReactNative } from "react-icons/tb";
+import { AiFillApi } from "react-icons/ai";
 
 import TickerAnimations from "../animation/contactClientTicker";
 import { SkillsData } from "@/data";
@@ -39,9 +50,29 @@ const skills = [
     level: "75%",
   },
   {
+    title: "React Native",
+    icon: TbBrandReactNative,
+    level: "80%",
+  },
+  {
+    title: "Claude",
+    icon: TbBrandReactNative,
+    level: "80%",
+  },
+  {
+    title: "Copilot",
+    icon: SiGithubcopilot,
+    level: "93%",
+  },
+  {
+    title: "Ollama",
+    icon: SiOllama,
+    level: "73%",
+  },
+  {
     title: "TypeScript",
-    icon: SiTypescript,
-    level: "85%",
+    icon: SiClaude,
+    level: "90%",
   },
   {
     title: "Firebase",
@@ -54,6 +85,16 @@ const skills = [
     level: "80%",
   },
   {
+    title: "SQLite",
+    icon: SiSqlite,
+    level: "62%",
+  },
+  {
+    title: "Hive",
+    icon: SiApachehive,
+    level: "53%",
+  },
+  {
     title: "Tailwind CSS",
     icon: SiTailwindcss,
     level: "90%",
@@ -64,14 +105,39 @@ const skills = [
     level: "82%",
   },
   {
+    title: "GetX",
+    icon: SiGetx,
+    level: "92%",
+  },
+  {
+    title: "REST API",
+    icon: AiFillApi,
+    level: "95%",
+  },
+  {
     title: "Git",
     icon: FaGitAlt,
     level: "93%",
   },
   {
+    title: "GitLab",
+    icon: PiGitlabLogoSimpleBold,
+    level: "60%",
+  },
+  {
     title: "Appwrite",
     icon: SiAppwrite,
     level: "84%",
+  },
+  {
+    title: "Docker",
+    icon: SiDocker,
+    level: "70%",
+  },
+  {
+    title: "ClickUp",
+    icon: SiClickup,
+    level: "86%",
   },
 ];
 

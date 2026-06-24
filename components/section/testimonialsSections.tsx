@@ -6,27 +6,31 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sarah Ahmed",
-    role: "Product Manager",
-    image: "/image/user1.jpg",
+    name: "Ibrahim Niloy",
+    role: "Client",
+    image:
+      "https://ibrahimniloy.com/wp-content/uploads/2025/05/cropped-ibrahim-round-pro-pic.png",
     feedback:
-      "Tawhidul delivered a high-quality Flutter app with clean architecture and smooth performance. Communication was super professional.",
+      "Tawhid delivered the project with excellent attention to detail and strong technical expertise. His communication, problem-solving skills, and ability to turn requirements into a polished product made the entire development process smooth and efficient.",
+    rating: 5,
+    website: "https://ibrahimniloy.com/",
+  },
+  {
+    name: "BRAC Bank Project Team",
+    role: "Stakeholder",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcb6UpzV3STK3eU0OTiQBGFLPS7DMdQdpxg1taj7b2e-eXfzDaVjxwN8ZZ&s=10",
+    feedback:
+      "Tawhid contributed significantly to the development of our fleet and transportation management platform. His frontend architecture decisions and focus on performance helped ensure a reliable user experience.",
     rating: 5,
   },
   {
-    name: "John Carter",
-    role: "Startup Founder",
-    image: "/image/user2.jpg",
+    name: "International Client",
+    role: "Product Owner",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCLsbe68LGYoFLzWXh2uPqxBXoz3WL8lJF5Lnrwq9hGN765tNG8VSHqP9&s=10",
     feedback:
-      "One of the best React developers I’ve worked with. Clean code, fast delivery, and great UI sense.",
-    rating: 5,
-  },
-  {
-    name: "Ayesha Rahman",
-    role: "UI/UX Designer",
-    image: "/image/user3.jpg",
-    feedback:
-      "He perfectly converted my designs into responsive Next.js UI with great attention to detail and animations.",
+      "A dependable engineer who consistently delivered features on time. Strong Flutter and React skills, clear communication, and a proactive approach to solving challenges throughout the project lifecycle.",
     rating: 5,
   },
 ];

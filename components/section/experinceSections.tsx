@@ -5,28 +5,28 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    role: "Frontend Developer (Flutter & React)",
-    company: "Freelance / Remote Clients",
-    period: "2024 - Present",
+    role: "Junior Software Engineer",
+    company: "Metal Studio",
+    period: "May 2025 - Present",
     description:
-      "Built scalable mobile & web apps using Flutter, React, and Next.js. Worked on API integration, UI/UX improvements, and performance optimization.",
-    tags: ["Flutter", "React", "Next.js", "REST API"],
+      "Developing scalable React applications and shared component systems. Integrated AI-powered chat and voice-to-text features, built centralized API services, and resolved critical production issues across multiple projects.",
+    tags: ["React", "Next.js", "TypeScript","Flutter", "AI Integration", "REST API"],
   },
   {
-    role: "React Developer",
-    company: "Personal & Side Projects",
-    period: "2023 - 2024",
+    role: "Junior Software Engineer",
+    company: "Appartisans Lab",
+    period: "Jul 2024 - Apr 2025",
     description:
-      "Developed multiple SaaS-style projects and dashboards using React, Redux, and Firebase with focus on reusable components and clean architecture.",
-    tags: ["React", "Redux", "Firebase"],
+      "Built and maintained Flutter applications for international clients. Developed reusable UI components, implemented GetX state management, integrated REST APIs, and delivered production-ready mobile features.",
+    tags: ["Flutter", "Dart", "GetX", "REST API", "Firebase"],
   },
   {
-    role: "Flutter Developer",
-    company: "Mobile App Projects",
-    period: "2023",
+    role: "Full Stack Developer",
+    company: "Selected Projects",
+    period: "2023 - Present",
     description:
-      "Built cross-platform mobile apps with Flutter, implementing state management with GetX and Provider, and integrating REST APIs.",
-    tags: ["Flutter", "GetX", "Provider"],
+      "Delivered government, fintech, and consumer applications including veterinary management, fleet tracking, and matrimonial platforms using Flutter, React, Node.js, Firebase, and MongoDB.",
+    tags: ["Flutter", "React", "Node.js", "MongoDB", "Firebase"],
   },
 ];
 
