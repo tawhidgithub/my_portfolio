@@ -6,7 +6,7 @@ import { Skill } from "@/app/type/sectionTypes";
 export const skillsService = {
   getAll: async (): Promise<Skill[]> => {
     try {
-      const res = await api.get<ApiResponseType>(ENDPOINTS.skills);
+      const res = await api.get<ApiResponseType<any>>(ENDPOINTS.skills);
       return res.data as Skill[];
     } catch (error) {
       throw error;
@@ -15,7 +15,7 @@ export const skillsService = {
 
   create: async (payload: Partial<Skill>) => {
     try {
-      const res = await api.post<ApiResponseType>(ENDPOINTS.skills, payload);
+      const res = await api.post<ApiResponseType<any>>(ENDPOINTS.skills, payload);
       return res.data as Skill;
     } catch (error) {
       throw error;
@@ -24,7 +24,7 @@ export const skillsService = {
 
   update: async (id: string, payload: Partial<Skill>) => {
     try {
-      const res = await api.put<ApiResponseType>(
+      const res = await api.put<ApiResponseType<any>>(
         `${ENDPOINTS.skills}/${id}`,
         payload,
       );
@@ -36,7 +36,7 @@ export const skillsService = {
 
   remove: async (id: string) => {
     try {
-      const res = await api.delete<ApiResponseType>(
+      const res = await api.delete<ApiResponseType<any>>(
         `${ENDPOINTS.skills}/${id}`,
       );
       return res.data;

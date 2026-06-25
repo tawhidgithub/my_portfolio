@@ -6,7 +6,7 @@ import { ImageItem } from "@/app/type/sectionTypes";
 export const imageService = {
   getAll: async (): Promise<ImageItem[]> => {
     try {
-      const res = await api.get<ApiResponseType>(ENDPOINTS.images);
+      const res = await api.get<ApiResponseType<any>>(ENDPOINTS.images);
       return res.data as ImageItem[];
     } catch (error) {
       throw error;
@@ -15,7 +15,10 @@ export const imageService = {
 
   upload: async (payload: FormData) => {
     try {
-      const res = await api.post<ApiResponseType>(ENDPOINTS.images, payload);
+      const res = await api.post<ApiResponseType<any>>(
+        ENDPOINTS.images,
+        payload,
+      );
       return res.data as ImageItem;
     } catch (error) {
       throw error;
@@ -24,7 +27,7 @@ export const imageService = {
 
   remove: async (id: string) => {
     try {
-      const res = await api.delete<ApiResponseType>(
+      const res = await api.delete<ApiResponseType<any>>(
         `${ENDPOINTS.images}/${id}`,
       );
       return res.data;

@@ -6,7 +6,7 @@ import { YoutubeItem } from "@/app/type/sectionTypes";
 export const youtubeService = {
   getAll: async (): Promise<YoutubeItem[]> => {
     try {
-      const res = await api.get<ApiResponseType>(ENDPOINTS.youtube);
+      const res = await api.get<ApiResponseType<any>>(ENDPOINTS.youtube);
       return res.data as YoutubeItem[];
     } catch (error) {
       throw error;
@@ -15,7 +15,10 @@ export const youtubeService = {
 
   create: async (payload: Partial<YoutubeItem>) => {
     try {
-      const res = await api.post<ApiResponseType>(ENDPOINTS.youtube, payload);
+      const res = await api.post<ApiResponseType<any>>(
+        ENDPOINTS.youtube,
+        payload,
+      );
       return res.data as YoutubeItem;
     } catch (error) {
       throw error;
@@ -24,7 +27,7 @@ export const youtubeService = {
 
   update: async (id: string, payload: Partial<YoutubeItem>) => {
     try {
-      const res = await api.put<ApiResponseType>(
+      const res = await api.put<ApiResponseType<any>>(
         `${ENDPOINTS.youtube}/${id}`,
         payload,
       );
@@ -36,7 +39,7 @@ export const youtubeService = {
 
   remove: async (id: string) => {
     try {
-      const res = await api.delete<ApiResponseType>(
+      const res = await api.delete<ApiResponseType<any>>(
         `${ENDPOINTS.youtube}/${id}`,
       );
       return res.data;

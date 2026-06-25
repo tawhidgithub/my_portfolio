@@ -6,7 +6,7 @@ import { Experience } from "@/app/type/sectionTypes";
 export const experienceService = {
   getAll: async (): Promise<Experience[]> => {
     try {
-      const res = await api.get<ApiResponseType>(ENDPOINTS.experiences);
+      const res = await api.get<ApiResponseType<any>>(ENDPOINTS.experiences);
       return res.data as Experience[];
     } catch (error) {
       throw error;
@@ -15,7 +15,7 @@ export const experienceService = {
 
   create: async (payload: Partial<Experience>) => {
     try {
-      const res = await api.post<ApiResponseType>(
+      const res = await api.post<ApiResponseType<any>>(
         ENDPOINTS.experiences,
         payload,
       );
@@ -27,7 +27,7 @@ export const experienceService = {
 
   update: async (id: string, payload: Partial<Experience>) => {
     try {
-      const res = await api.put<ApiResponseType>(
+      const res = await api.put<ApiResponseType<any>>(
         `${ENDPOINTS.experiences}/${id}`,
         payload,
       );
@@ -39,7 +39,7 @@ export const experienceService = {
 
   remove: async (id: string) => {
     try {
-      const res = await api.delete<ApiResponseType>(
+      const res = await api.delete<ApiResponseType<any>>(
         `${ENDPOINTS.experiences}/${id}`,
       );
       return res.data;

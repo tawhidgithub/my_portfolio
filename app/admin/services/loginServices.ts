@@ -20,7 +20,7 @@ export const loginServices = async (payload: {
       password: payload.password,
     };
 
-    const res = await api.post<ApiResponseType>(ENDPOINTS.login, body);
+    const res = await api.post<ApiResponseType<any>>(ENDPOINTS.login, body);
 
     return res.data as LoginResponse;
   } catch (error) {
