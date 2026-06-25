@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { skillsService } from "../services/skillsServices";
+import { Skill } from "@/app/type/sectionTypes";
 
 export const useGetSkills = () => {
   return useQuery({
@@ -12,7 +13,7 @@ export const useMutateSkill = () => {
   const qc = useQueryClient();
 
   const create = useMutation({
-    mutationFn: (payload: any) => skillsService.create(payload),
+    mutationFn: (payload: Skill) => skillsService.create(payload),
     onSuccess: () => {
       qc.invalidateQueries({
         queryKey: ["skills"],
@@ -21,7 +22,7 @@ export const useMutateSkill = () => {
   });
 
   const update = useMutation({
-    mutationFn: ({ id, payload }: { id: string; payload: any }) =>
+    mutationFn: ({ id, payload }: { id: string; payload: Skill }) =>
       skillsService.update(id, payload),
 
     onSuccess: () => {

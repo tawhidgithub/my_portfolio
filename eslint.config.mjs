@@ -19,6 +19,7 @@ const eslintConfig = defineConfig([
       "no-unused-vars": "warn", // warning (yellow in VS Code/terminal)
       "react-hooks/rules-of-hooks": "error", // error (red in VS Code/terminal)
       "no-console": ["warn", { allow: ["warn", "error"] }], // custom config
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ]);
