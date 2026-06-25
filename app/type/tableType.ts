@@ -5,4 +5,5 @@ export type CustomTableDataType = Partial<{
   techStack: string;
   githubUrl: string;
   liveUrl: string;
+  [key: string]: string | number | undefined;
 }>;

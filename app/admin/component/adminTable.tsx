@@ -15,7 +15,7 @@ type Props = {
   title: string;
   columns: Column[];
   data: CustomTableDataType[];
-  onEdit: (item: any) => void;
+  onEdit?: (item: any) => void;
   onDelete: (id: string) => void;
   onAdd?: (item: any) => void;
 };
@@ -108,7 +108,7 @@ export default function AdminTable({
           onAdd={handleAdd}
           onSave={(item) => {
             if (editItem) {
-              onEdit(item);
+              onEdit!(item);
               console.log("++++============", item);
             } else {
               handleAdd(item);

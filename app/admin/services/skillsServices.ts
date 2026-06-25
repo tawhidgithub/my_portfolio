@@ -15,7 +15,10 @@ export const skillsService = {
 
   create: async (payload: Partial<Skill>) => {
     try {
-      const res = await api.post<ApiResponseType<any>>(ENDPOINTS.skills, payload);
+      const res = await api.post<ApiResponseType<any>>(
+        ENDPOINTS.skills,
+        payload,
+      );
       return res.data as Skill;
     } catch (error) {
       throw error;
@@ -28,7 +31,7 @@ export const skillsService = {
         `${ENDPOINTS.skills}/${id}`,
         payload,
       );
-      return res.data as Skill;
+      return res.data;
     } catch (error) {
       throw error;
     }
